@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/kermisweet/marketproject-config.git
+  rabbitmq:
+    host: 120.79.14.47
+
+server:
+  port: 12000
+management:
+  endpoint:
+    web:
+      exposure:
+        include: bus-refresh

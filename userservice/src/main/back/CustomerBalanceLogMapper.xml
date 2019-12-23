@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kermi.market.userservice.dao.CustomerBalanceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.kermi.market.userservice.dao.CustomerBalanceLog" >
+    <constructor >
+      <idArg column="balance_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="customer_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="source" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="source_sn" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    balance_id, customer_id, source, source_sn, create_time, amount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_balance_log
+    where balance_id = #{balanceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_balance_log
+    where balance_id = #{balanceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kermi.market.userservice.dao.CustomerBalanceLog" >
+    insert into customer_balance_log (balance_id, customer_id, source, 
+      source_sn, create_time, amount
+      )
+    values (#{balanceId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{source,jdbcType=TINYINT}, 
+      #{sourceSn,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{amount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kermi.market.userservice.dao.CustomerBalanceLog" >
+    insert into customer_balance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="balanceId != null" >
+        balance_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="sourceSn != null" >
+        source_sn,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="balanceId != null" >
+        #{balanceId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=TINYINT},
+      </if>
+      <if test="sourceSn != null" >
+        #{sourceSn,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kermi.market.userservice.dao.CustomerBalanceLog" >
+    update customer_balance_log
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=TINYINT},
+      </if>
+      <if test="sourceSn != null" >
+        source_sn = #{sourceSn,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where balance_id = #{balanceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kermi.market.userservice.dao.CustomerBalanceLog" >
+    update customer_balance_log
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      source = #{source,jdbcType=TINYINT},
+      source_sn = #{sourceSn,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=DECIMAL}
+    where balance_id = #{balanceId,jdbcType=INTEGER}
+  </update>
+</mapper>
