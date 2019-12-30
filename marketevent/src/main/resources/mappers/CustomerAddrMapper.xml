@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kermi.market.marketevent.mapper.CustomerAddrMapper" >
+  <resultMap id="BaseResultMap" type="com.kermi.market.marketevent.pojo.CustomerAddr" >
+    <constructor >
+      <idArg column="customer_addr_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="customer_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="zip" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="province" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="city" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="district" jdbcType="SMALLINT" javaType="java.lang.Short" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_default" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="modified_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    customer_addr_id, customer_id, zip, province, city, district, address, is_default, 
+    modified_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_addr
+    where customer_addr_id = #{customerAddrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_addr
+    where customer_addr_id = #{customerAddrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kermi.market.marketevent.pojo.CustomerAddr" >
+    insert into customer_addr (customer_addr_id, customer_id, zip, 
+      province, city, district, 
+      address, is_default, modified_time
+      )
+    values (#{customerAddrId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{zip,jdbcType=SMALLINT}, 
+      #{province,jdbcType=SMALLINT}, #{city,jdbcType=SMALLINT}, #{district,jdbcType=SMALLINT}, 
+      #{address,jdbcType=VARCHAR}, #{isDefault,jdbcType=TINYINT}, #{modifiedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kermi.market.marketevent.pojo.CustomerAddr" >
+    insert into customer_addr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerAddrId != null" >
+        customer_addr_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="zip != null" >
+        zip,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerAddrId != null" >
+        #{customerAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=SMALLINT},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=SMALLINT},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=SMALLINT},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kermi.market.marketevent.pojo.CustomerAddr" >
+    update customer_addr
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="zip != null" >
+        zip = #{zip,jdbcType=SMALLINT},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=SMALLINT},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=SMALLINT},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where customer_addr_id = #{customerAddrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kermi.market.marketevent.pojo.CustomerAddr" >
+    update customer_addr
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      zip = #{zip,jdbcType=SMALLINT},
+      province = #{province,jdbcType=SMALLINT},
+      city = #{city,jdbcType=SMALLINT},
+      district = #{district,jdbcType=SMALLINT},
+      address = #{address,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=TINYINT},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where customer_addr_id = #{customerAddrId,jdbcType=INTEGER}
+  </update>
+</mapper>

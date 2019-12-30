@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SessionAttributes implements Serializable {
+public class  SessionAttributes implements Serializable {
     /*SessonID*/
     private String sessionID;
     /*Session中保存的用户UUID*/

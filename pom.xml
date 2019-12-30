@@ -10,8 +10,9 @@
     <modules>
         <module>eurekaserver</module>
         <module>userservice</module>
-        <module>ribbonserver</module>
         <module>configservice</module>
+        <module>marketevent</module>
+        <module>goodsservice</module>
     </modules>
 
     <!--    打包方式为pom-->

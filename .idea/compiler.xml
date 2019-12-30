@@ -9,9 +9,10 @@
         <module name="userservice" />
         <module name="feignservice" />
         <module name="goodsservice" />
-        <module name="zuulservice" />
-        <module name="eurekaserver" />
         <module name="configservice" />
+        <module name="marketevent" />
+        <module name="eurekaserver" />
+        <module name="zuulservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -28,6 +29,7 @@
       <module name="feignserver" options="-parameters" />
       <module name="feignservice" options="-parameters" />
       <module name="goodsservice" options="-parameters" />
+      <module name="marketevent" options="-parameters" />
       <module name="ribbonserver" options="-parameters" />
       <module name="userservice" options="-parameters" />
       <module name="zuulservice" options="-parameters" />

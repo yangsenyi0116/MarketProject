@@ -1,0 +1,99 @@
+spring:
+        profiles: dev
+        datasource:
+          url: jdbc:mysql://localhost:3306/market?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+          username: root
+          password: 157098
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+          # 配置获取连接等待超时的时间
+          # 下面为连接池的补充设置，应用到上面所有数据源中
+          # 初始化大小，最小，最大
+          initialSize: 1
+          min-idle: 3
+          maxActive: 20
+          maxWait: 60000
+            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          timeBetweenEvictionRunsMillis: 60000
+                                # 配置一个连接在池中最小生存的时间，单位是毫秒
+          minEvictableIdleTimeMillis: 30000
+          validationQuery: select 'x'
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+            # 打开PSCache，并且指定每个连接上PSCache的大小
+          poolPreparedStatements: true
+          maxPoolPreparedStatementPerConnectionSize: 20
+            # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+          filters: stat,wall,slf4j
+            # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+          connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+            # 合并多个DruidDataSource的监控数据
+          useGlobalDataSourceStat: true
+        mvc:
+          view:
+            prefix: /
+            suffix: .jsp
+        redis:
+          database: 0
+          host: 127.0.0.1
+          port: 6379
+          jedis:
+            pool:
+              max-active: 50
+              max-wait: -1
+              max-idle: 10
+              min-idle: 0
+          password:
+          timeout: 10000
+        http:
+          encoding:
+            charset: utf-8
+            enabled: true
+            force: true
+        messages:
+          encoding: UTF-8
+server:
+        port: 8082
+        tomcat:
+          uri-encoding: UTF-8
+
+myredis:
+ CATEGORY_KEY1: CATEGORY_KEY1
+ COMMENT_KEY: COMMENT_KEY
+ PRODUCTINFO_KEY: PRODUCTINFO_KEY
+ PRODUCTPICINFO_KEY: PRODUCTPICINFO_KEY
+
+
+
+#server.tomcat.uri-encoding=UTF-8
+#spring.http.encoding.charset=UTF-8
+#spring.http.encoding.enabled=true
+#spring.http.encoding.force=true
+#spring.messages.encoding=UTF-8
+### Redis 配置
+### Redis数据库索引（默认为0）
+#spring.redis.database=0
+### Redis服务器地址
+#spring.redis.host=127.0.0.1
+### Redis服务器连接端口
+#spring.redis.port=6379
+### Redis服务器连接密码（默认为空）
+#spring.redis.password=
+### 连接池最大连接数（使用负值表示没有限制）
+#spring.redis.jedis.pool.max-active=8
+### 连接池最大阻塞等待时间（使用负值表示没有限制）
+#spring.redis.jedis.pool.max-wait=-1ms
+### 连接池中的最大空闲连接
+#spring.redis.jedis.pool.max-idle=8
+### 连接池中的最小空闲连接
+#spring.redis.jedis.pool.min-idle=0
+### 连接超时时间（毫秒）
+#spring.redis.timeout=1200ms
+
+
+## AOP 切面
+## 添加@EnableAspectJAutoProxy。
+#spring.aop.auto= true
+## 是否要创建基于子类（CGLIB）的代理（true），而不是基于标准的基于Java接口的代理（false）。
+#spring.aop.proxy-target-class= false
